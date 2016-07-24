@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Pic</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-item>
+    <ion-row>
+      <ion-col style="margin-top:8px">
+        <div *ngIf="progress !== 0">
+          <progress [(value)]="progress" max="100" width='100%'></progress>
+        </div>
+      </ion-col>
+		</ion-row>
+		<ion-row>
+      <ion-col>
+        <button (click)="getPicture(0)">Gallery</button>
+      </ion-col>
+    </ion-row>
+		<ion-row>
+			<ion-col>
+        <button (click)="getPicture(1)">Camera</button>
+      </ion-col>
+    </ion-row>
+  </ion-item>
+	
+	<ion-item>
+    <ion-row>
+      <ion-col width-33 *ngFor="let picture of pictures | async">
+        <img src="{{picture.imageUrl}}" alt="" class="img">
+      </ion-col>
+    </ion-row>
+  </ion-item>
+	
+</ion-content>

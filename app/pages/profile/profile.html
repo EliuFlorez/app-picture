@@ -1,0 +1,113 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Profile</ion-title>
+		<ion-buttons end>
+      <button (click)="logOut()"><ion-icon name="log-out"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="has-header gem-ion-content profile">
+	<div class="gem-profile-media">
+		<div class="gem-profile-details">
+			<img src="img/gemionic/profile-image.jpg" alt="" class="gem-circle profile-image">
+			<h3 class="gem-white">Samantha Aryon</h3>
+			<h5 class="gem-white">London, England</h5>
+			<ion-row profile-stats>
+				<ion-col class="stat">
+					<h6 class="gem-white uppercase">Following</h6>
+					<h6 class="gem-white">352</h6>
+				</ion-col>
+				<ion-col class="stat">
+					<h6 class="gem-white uppercase">Following</h6>
+					<h6 class="gem-white">6233</h6>
+				</ion-col>
+				<ion-col class="stat">
+					<h6 class="gem-white uppercase">Following</h6>
+					<h6 class="gem-white">564</h6>
+				</ion-col>
+			</ion-row>
+		</div>
+		<img src="img/gemionic/post-img.jpg" alt="" class="fluid-image profile-background-image" style="vertical-align:middle;">
+	</div>
+	<div class="text-center padding">
+		<button class="button button-small button-positive uppercase">Find Friends</button>
+	</div>
+	<ion-list>
+    <ion-list-header>
+      Personal Information
+    </ion-list-header>
+
+    <ion-item (click)="updateName()">
+      <ion-grid>
+        <ion-row>
+          <ion-col width-50>
+            Name
+          </ion-col>
+          <ion-col *ngIf="userProfile?.firstName || userProfile?.lastName">
+            {{userProfile?.firstName}} {{userProfile?.lastName}}
+          </ion-col>
+          <ion-col class="placeholder-profile" *ngIf="!userProfile?.firstName">
+            <span>
+              Tap here to edit.
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <ion-item (click)="updateEmail()">
+      <ion-grid>
+        <ion-row>
+          <ion-col width-50>
+            Email
+          </ion-col>
+          <ion-col width-50 *ngIf="userProfile?.email">
+            {{userProfile?.email}}
+          </ion-col>
+          <ion-col class="placeholder-profile" *ngIf="!userProfile?.email">
+            <span>
+              Tap here to edit.
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <ion-item (click)="updatePassword()">
+      <ion-grid>
+        <ion-row>
+          <ion-col width-50>
+            Password
+          </ion-col>
+          <ion-col class="placeholder-profile">
+            <span>
+              Tap here to edit.
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+	<ion-list>
+		<ion-item icon-left>
+			<ion-icon name="mail"></ion-icon>
+			Send Message
+		</ion-item>
+		<ion-item icon-left>
+			<ion-icon name="at"></ion-icon>
+			Instant Message
+		</ion-item>
+		<ion-item icon-left>
+			<ion-icon name="add-circle"></ion-icon>
+			Facebook Friends
+			<button class="button button-small button-positive uppercase">Connect</button>
+		</ion-item>
+		<ion-item icon-left>
+			<ion-icon name="mail"></ion-icon>
+			Syndicate Updates
+			<ion-label class="toggle toggle-assertive">Syndicate Updates</ion-label>
+			<ion-checkbox dark checked="true"></ion-checkbox>
+		</ion-item>
+	</ion-list>
+</ion-content>

@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Event Edit</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="has-header gem-ion-content">
+	<div class="gem-profile-media">
+		<div class="gem-profile-details profile2">
+			<div class="text-center">
+				<button type="button" class="button button-positive" (click)="getPicture($event)"><ion-icon name="add" style="color:#fff"></ion-icon> Photo</button>
+			</div>
+		</div>
+		<img *ngIf="photoUrl" src="{{photoUrl}}" alt="" class="fluid-image profile-background-image" style="vertical-align:middle;">
+		<img *ngIf="!photoUrl" src="img/event.png" alt="" class="fluid-image profile-background-image" style="vertical-align:middle;">
+	</div>
+	<form [ngFormModel]="eventForm" (submit)="onSubmit($event)">
+    <ion-item [class.error]="!title.valid && title.touched">
+      <ion-label stacked>Title</ion-label>
+      <ion-input ngControl="title" type="text"></ion-input>
+    </ion-item>
+		<div *ngIf="title.hasError('required') && title.touched" class="text-center error-box">* Title is required!</div>
+		<ion-item>
+      <ion-label stacked>Description</ion-label>
+      <ion-textarea ngControl="description" type="textarea" style="height:50px;"></ion-textarea>
+    </ion-item>
+		<br>
+    <button block [disabled]="eventForm.valid" type="submit">Update</button>
+  </form>
+</ion-content>

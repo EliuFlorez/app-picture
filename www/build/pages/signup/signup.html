@@ -1,0 +1,21 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>
+			Create a new account
+		</ion-title>
+	</ion-navbar>
+</ion-header>
+<ion-content padding class="signup">
+  <form [ngFormModel]="signupForm" (submit)="signupUser($event)">
+    <ion-item>
+      <ion-label stacked>Email</ion-label>
+      <ion-input ngControl="email" type="email" placeholder="Your email address"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Password</ion-label>
+      <ion-input ngControl="password" type="password" placeholder="Your password"></ion-input>
+    </ion-item>
+		<br>
+    <button block type="submit">Create an Account</button>
+  </form>
+</ion-content>

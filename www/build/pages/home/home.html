@@ -1,0 +1,26 @@
+
+<ion-header>
+  <ion-navbar text-center>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+		<img src="img/logo.png" alt="" class="img" style="width:90px;height:30px;">
+		<ion-buttons end>
+			<button (click)="logOut()">Logout <ion-icon name="log-out"></ion-icon></button>
+		</ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="has-header gem-ion-content feed">
+	<ion-searchbar (ionInput)="eventSearch($event)"></ion-searchbar>
+	<ion-list>
+    <ion-item *ngFor="let event of events | async">
+			<p>demo</p>
+		</ion-item>
+  </ion-list>
+</ion-content>
+<ul id="floating-button" style="bottom:20px">
+	<li class="buttonClass" style="background-color:#387ef5">
+		<a (click)="eventCreate()"><ion-icon name="add" style="color:#fff"></ion-icon></a>
+	</li>
+</ul>

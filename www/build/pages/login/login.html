@@ -1,0 +1,22 @@
+<ion-header>
+	<ion-navbar text-center>
+		<!-- <ion-title>Login</ion-title> -->
+		<img src="img/logo.png" alt="" class="img" style="width:90px;height:30px;">
+	</ion-navbar>
+</ion-header>
+<ion-content padding class="login">
+  <form [ngFormModel]="loginForm" (submit)="loginUser($event)">
+    <ion-item>
+      <ion-label stacked>Email</ion-label>
+      <ion-input ngControl="email" type="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Password</ion-label>
+      <ion-input ngControl="password" type="password"></ion-input>
+    </ion-item>
+		<br>
+    <button block type="submit">Login</button>
+  </form>
+	<button block clear (click)="goToSignup()">Create a new account</button>
+	<button block clear (click)="goToResetPassword()">I forgot my password</button>
+</ion-content>

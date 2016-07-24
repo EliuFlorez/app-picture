@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Event Create</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="has-header gem-ion-content">
+	<form [ngFormModel]="eventForm" (submit)="onSubmit($event)">
+    <ion-item [class.error]="!title.valid && title.touched">
+      <ion-label stacked>Title</ion-label>
+      <ion-input ngControl="title" type="text"></ion-input>
+    </ion-item>
+		<div *ngIf="title.hasError('required') && title.touched" class="text-center error-box">* Title is required!</div>
+		<ion-item>
+      <ion-label stacked>Description</ion-label>
+      <ion-textarea ngControl="description" type="textarea" style="height:50px;"></ion-textarea>
+    </ion-item>
+		<br>
+    <button block [disabled]="eventForm.valid" type="submit">Save</button>
+  </form>
+</ion-content>

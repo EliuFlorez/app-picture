@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+		<ion-title>Event</ion-title>
+		<ion-buttons end>
+			<button primary (click)="create()">
+				<ion-icon name='add'></ion-icon> Add Event
+			</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="has-header gem-ion-content feed">
+	<ion-searchbar (ionInput)="eventSearch($event)"></ion-searchbar>
+	<ion-list>
+    <ion-item *ngFor="let event of events | async">
+			<div class="news-media">
+				<img src="img/gemionic/news-image.jpg" alt="" class="fluid-image">
+				<div class="media-social-stats">
+						<button class="button button-small button-borderless button-positive"><ion-icon name="heart"></ion-icon></button>
+					</div>
+			</div>
+			<div class="news-item">
+				<div class="news-thumb">
+					<img src="img/gemionic/profile-image.jpg" alt="" class="img">
+				</div>
+				<div class="news-content">
+					<h4>{{event.title}}</h4>
+					<div class="gem-tiny-text news-item-stats">
+						<ion-icon name="clock"></ion-icon> 2 days ago
+						<span class="news-comment-summary">
+							<ion-icon name="heart"></ion-icon> 2 
+							<ion-icon name="chatbubble"></ion-icon> 3
+						</span>
+					</div>
+				</div>
+				<div class="news-more-action">
+					<ion-icon name="more"></ion-icon>
+				</div>
+			</div>
+		</ion-item>
+  </ion-list>
+</ion-content>
