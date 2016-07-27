@@ -186,7 +186,7 @@ label.item.item-input textarea {margin:10px 0;border-radius:5px;}
 .gem-friend-grid .friend-item {text-align:center;float:left;width:23%;margin:5px 1%;}
 
 /*Profile Version 1*/
-.gem-profile-media {background:#000;min-height:237px;overflow:hidden;position:relative;}
+.gem-profile-media {background:#fff;min-height:180px;overflow:hidden;position:relative;}
 .gem-profile-media .profile-background-image {z-index:1;opacity:0.3;position:absolute;top:-100%;left:0;right:0;bottom:-100%;margin:auto;}
 .gem-profile-media .gem-profile-details {z-index:2;text-align:center;position:absolute;width:100%;color:#fff;padding:20px 5% 0 5%;}
 .gem-profile-media .gem-profile-details .profile-image {width:76px;border:4px solid rgba(255, 255, 255, 0.9);}

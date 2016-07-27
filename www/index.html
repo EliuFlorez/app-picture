@@ -24,6 +24,17 @@
   <script src="build/js/zone.js"></script>
 	<!-- firebase.js required for firebase -->
 	<script src="libs/firebase/firebase.js"></script>
+	<script>
+	// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyBqsXK0BLq0M6Hc7lq2PJ1ERclzDFlgB_M",
+			authDomain: "dbkeepic.firebaseapp.com",
+			databaseURL: "https://dbkeepic.firebaseio.com",
+			storageBucket: "dbkeepic.appspot.com"
+		};
+		// Config Firebase
+		firebase.initializeApp(config);
+	</script>
   <!-- the bundle which is built from the app's source code -->
   <script src="build/js/app.bundle.js"></script>
 </body>

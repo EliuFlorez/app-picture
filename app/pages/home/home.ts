@@ -1,42 +1,32 @@
 import {Component} from '@angular/core';
-import {Platform, Alert, Loading, Modal, Page, ViewController, NavController, NavParams} from 'ionic-angular';
+import {Platform, Page, Loading, NavController, NavParams} from 'ionic-angular';
 import {LoginPage} from '../login/login';
 import {EventDetailsPage} from '../event-details/event-details';
 import {EventCreatePage} from '../event-create/event-create';
-import {AuthData} from '../../providers/auth-data/auth-data';
 import {FireData} from '../../providers/fire-data/fire-data';
-
-import {Event} from '../../models/event';
 
 declare var firebase: any;
 
 @Component({
   templateUrl: 'build/pages/home/home.html',
-	providers: [AuthData, FireData]
+	providers: [FireData]
 })
 export class HomePage {
 	
   events: any;
-	//events: Event[];
 	sid: any;
 	
   constructor(
 		private nav: NavController, 
 		public navParams: NavParams, 
-		public authData: AuthData,
 		public fireData: FireData
 	) {
 		this.nav = nav;
-		this.authData = authData;
 		this.fireData = fireData;
 		
-		//this.events = [];
-		this.events = this.fireData.loadData('events', 'PID');
-		//this.fireData.load('events', 'PID').then(events => this.events = events);
-		
-		let loading = Loading.create({
-			dismissOnPageChange: true,
-		});
+		this.events = [];
+		this.fireData.load('events', 'PID').then(events => this.events = events);
+		let loading = Loading.create({dismissOnPageChange: true});
 		this.nav.present(loading);
   }
 	
@@ -69,9 +59,7 @@ export class HomePage {
 	}
 	
 	eventShow(event, data) {
-    this.nav.push(EventDetailsPage, {
-      data: data
-    });
+    this.nav.push(EventDetailsPage, {data: data});
   }
 	
 	eventCreate(event) {
@@ -79,7 +67,7 @@ export class HomePage {
   }
 	
 	logOut() {
-		this.authData.logout();
+		this.fireData.logout();
 		this.nav.push(LoginPage);
   }
 }

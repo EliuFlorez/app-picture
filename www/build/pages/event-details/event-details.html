@@ -1,18 +1,38 @@
-<!--
-  Generated template for the EventDetailsPage page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>EventDetails</ion-title>
+    <ion-title>Event Details</ion-title>
+		<ion-buttons end>
+			<button (click)="getPicture(0)">Gallery <ion-icon name="image"></ion-icon></button>
+		</ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
-
-<ion-content padding>
-
+<ion-content padding class="has-header gem-ion-content">
+	<div class="gem-profile-media">
+		<div class="gem-profile-details profile2">
+			<div class="text-center">
+				<h2 class="uppercase">demo</h2>
+			</div>
+		</div>
+		<img *ngIf="photoUrl" src="{{photoUrl}}" alt="" class="fluid-image profile-background-image" style="vertical-align:middle;">
+		<img *ngIf="!photoUrl" src="img/event.png" alt="" class="fluid-image profile-background-image" style="vertical-align:middle;">
+	</div>
+	<ion-row class="profile-stats profile-3 gem-center">
+		<ion-col class="stat">
+			<h5 class="gem-white"><ion-icon name="person"></ion-icon> 11</h5>
+		</ion-col>
+		<ion-col class="stat">
+			<h5 class="gem-white"><ion-icon name="image"></ion-icon> 20</h5>
+		</ion-col>
+		<ion-col class="stat">
+			<h5 class="gem-white"><ion-icon name="heart"></ion-icon> 11</h5>
+		</ion-col>
+	</ion-row>
+	<ionic-gallery [items]="items" [options]="options" ></ionic-gallery>
 </ion-content>
+<ul id="floating-button" style="bottom:20px">
+	<li class="buttonClass" style="background-color:#387ef5">
+		<a (click)="getPicture(1)"><ion-icon name="camera" style="color:#fff"></ion-icon></a>
+	</li>
+</ul>

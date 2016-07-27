@@ -23,10 +23,9 @@ export class EventPage {
     this.fireData = fireData;
 		
 		this.events = [];
-		this.events = this.fireData.loadData('events', 'PID');
-		let loading = Loading.create({
-			dismissOnPageChange: true,
-		});
+		//this.events = this.fireData.loadData('events', 'PID');
+		this.fireData.load('events', 'PID').then(events => this.events = events);
+		let loading = Loading.create({dismissOnPageChange: true});
 		this.nav.present(loading);
   }
 	

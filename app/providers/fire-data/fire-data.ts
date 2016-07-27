@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Pipe, PipeTransform} from '@angular/core';
 import 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs/Observable";
@@ -9,48 +9,57 @@ import {LoginPage} from '../../pages/login/login';
 
 declare var firebase: any;
 
+@Pipe({
+  name: 'derp',
+  pure: false
+})
+export class DerpPipe implements PipeTransform {
+  
+	private result: Array<any>;
+
+  transform(value, args) {
+    this.result = [];
+    value.subscribe(values => {
+      if (Array.isArray(values)) {
+        this.result = Array.from(values);
+      } else {
+        this.result = [values];
+			}
+    })
+    return this.result;
+  }
+}
+
 @Injectable()
 export class FireData {
 	
   public data: any = null;
-	public fireAuth: any;
 	
   constructor(public nav: NavController) {
     this.data = null;
-		this.fireAuth = firebase.auth();
   }
 	
-	load(firedata, pid) {
-		var that = this;
-		if (this.data) {
-      return Promise.resolve(this.data);
-    }
-		return new Promise(function (resolve, reject) {
-			var data = [];
-			var ref = firebase.database().ref(firedata);
-			ref.limitToLast(10).on('value', function (snapshot) {
-				var data = snapshot.val();
-				console.log('data', data);
-				resolve(data);
-			}, function (error) {
-				console.log("ERROR:", error);
-				reject(error);
-			});
-		});
+	logout(): any {
+		return firebase.auth().signOut();
 	}
 	
-	list(firedata, pid) {
-		var that = this;
-		return new Observable(function (observer) {
-			var data = [];
-			var ref = firebase.database().ref(firedata);
-			ref.limitToLast(10).on('value', function (snapshot) {
-				var data = snapshot.val();
-				console.log('data', data);
-				observer.next(data);
-			}, function (error) {
+	load(firedata, pid) {
+		let that = this;
+		return new Promise((resolve, reject) => {
+			let data = [];
+			let ref = firebase.database().ref(firedata);
+			ref.limitToLast(10).on('value', snapshot => {
+				let arr = [];
+				snapshot.forEach(value => {
+					let data = value.val();
+					data['key'] = value.key;
+					data['like'] = false;
+					arr.push(data);
+				});
+				resolve(arr);
+			}, (error) => {
 				console.log("ERROR:", error);
-				observer.error(error);
+				reject(error);
 			});
 		});
 	}

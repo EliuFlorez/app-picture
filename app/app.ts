@@ -22,24 +22,13 @@ export class MyApp {
 	auth_name: any;
 	auth_email: any;
 	auth_avatar: any;
-  rootPage: any = LoginPage;
+  rootPage: any = HomePage;
 	pages: Array<{title: string, component: any}>;
 
   constructor(
 		public platform: Platform, 
 		private menu: MenuController
 	) {
-		// Initialize Firebase
-		var config = {
-			apiKey: "AIzaSyBqsXK0BLq0M6Hc7lq2PJ1ERclzDFlgB_M",
-			authDomain: "dbkeepic.firebaseapp.com",
-			databaseURL: "https://dbkeepic.firebaseio.com",
-			storageBucket: "dbkeepic.appspot.com"
-		};
-		
-		// Config Firebase
-		firebase.initializeApp(config);
-		
 		// StateChange Firebase
 		firebase.auth().onAuthStateChanged((user) => {
 			if (user) {

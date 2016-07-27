@@ -4,7 +4,7 @@
     <button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-		<img src="img/logo.png" alt="" class="img" style="width:90px;height:30px;">
+		<ion-title>Login</ion-title>
 		<ion-buttons end>
 			<button (click)="logOut()">Logout <ion-icon name="log-out"></ion-icon></button>
 		</ion-buttons>
@@ -14,8 +14,31 @@
 <ion-content class="has-header gem-ion-content feed">
 	<ion-searchbar (ionInput)="eventSearch($event)"></ion-searchbar>
 	<ion-list>
-    <ion-item *ngFor="let event of events | async">
-			<p>demo</p>
+    <ion-item *ngFor="let event of events">
+			<div class="news-media">
+				<img (click)="eventShow()" src="img/gemionic/news-image.jpg" alt="" class="fluid-image">
+				<div class="media-social-stats">
+					<button *ngIf="!event.like" (click)="onLike(event)" class="button button-small button-borderless button-dark"><ion-icon name="heart"></ion-icon></button>
+					<button *ngIf="event.like" (click)="onLike(event)" class="button button-small button-borderless button-positive"><ion-icon name="heart"></ion-icon></button>
+				</div>
+			</div>
+			<div class="news-item">
+				<div class="news-thumb">
+					<img src="img/gemionic/profile-image.jpg" alt="" class="img">
+				</div>
+				<div class="news-content">
+					<h4>{{event.title}}</h4>
+					<div class="gem-tiny-text news-item-stats">
+						<ion-icon name="clock"></ion-icon> 2 days ago
+						<span class="news-comment-summary">
+							<ion-icon name="heart"></ion-icon> 2 
+						</span>
+					</div>
+				</div>
+				<div class="news-more-action">
+					<ion-icon name="more"></ion-icon>
+				</div>
+			</div>
 		</ion-item>
   </ion-list>
 </ion-content>

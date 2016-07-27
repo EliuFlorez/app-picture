@@ -15,7 +15,7 @@
 <ion-content class="has-header gem-ion-content feed">
 	<ion-searchbar (ionInput)="eventSearch($event)"></ion-searchbar>
 	<ion-list>
-    <ion-item *ngFor="let event of events | async">
+    <ion-item *ngFor="let event of events">
 			<div class="news-media">
 				<img src="img/gemionic/news-image.jpg" alt="" class="fluid-image">
 				<div class="media-social-stats">
